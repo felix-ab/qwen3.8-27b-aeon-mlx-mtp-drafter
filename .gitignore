@@ -1,0 +1,11 @@
+# Model weights are hosted on Hugging Face and are not tracked here.
+*.safetensors
+*.safetensors.index.json
+*.gguf
+*.bin
+weights/
+models/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
