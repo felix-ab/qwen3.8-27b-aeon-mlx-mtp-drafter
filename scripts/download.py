@@ -3,8 +3,8 @@
 import argparse
 from huggingface_hub import snapshot_download
 
-DRAFTER = "VisualInference/Qwen3.8-27B-AEON-Ultimate-Uncensored-MLX-MTP-Drafter"
-TARGET = "VisualInference/Qwen3.8-27B-AEON-Ultimate-Uncensored-Multimodal-MLX-6bit"
+DRAFTER = "VisualInference/Qwen3.8-27B-AEON-Ultimate-MLX-MTP-Drafter"
+TARGET = "VisualInference/Qwen3.8-27B-AEON-Ultimate-Multimodal-MLX-6bit"
 
 
 def main() -> None:

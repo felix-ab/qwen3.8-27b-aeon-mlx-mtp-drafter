@@ -2,7 +2,7 @@
 
 The native multi-token-prediction (MTP) head of [AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-BF16](https://huggingface.co/AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-BF16) (revision `8f76e82`), split into the standalone drafter format that mlx-vlm expects for `mtp` speculative decoding.
 
-**Weights:** [huggingface.co/VisualInference/Qwen3.8-27B-AEON-Ultimate-Uncensored-MLX-MTP-Drafter](https://huggingface.co/VisualInference/Qwen3.8-27B-AEON-Ultimate-Uncensored-MLX-MTP-Drafter)
+**Weights:** [huggingface.co/VisualInference/Qwen3.8-27B-AEON-Ultimate-MLX-MTP-Drafter](https://huggingface.co/VisualInference/Qwen3.8-27B-AEON-Ultimate-MLX-MTP-Drafter)
 **Companion target model:** [qwen3.8-27b-aeon-mlx-6bit](https://github.com/felix-ab/qwen3.8-27b-aeon-mlx-6bit)
 
 This repository holds the documentation, split recipe and helper scripts. The weights (810 MB) are distributed through Hugging Face and are not tracked here.
@@ -25,7 +25,7 @@ Speculative decoding with this drafter is lossless. Rejected drafts fall back to
 ## Requirements
 
 - An Apple Silicon Mac with `mlx-vlm` installed.
-- A compatible target model, for example the [6-bit multimodal quantization](https://huggingface.co/VisualInference/Qwen3.8-27B-AEON-Ultimate-Uncensored-Multimodal-MLX-6bit).
+- A compatible target model, for example the [6-bit multimodal quantization](https://huggingface.co/VisualInference/Qwen3.8-27B-AEON-Ultimate-Multimodal-MLX-6bit).
 
 ## Installation
 
@@ -39,8 +39,8 @@ python scripts/download.py --target # also fetches the 6-bit target model
 
 ```bash
 python -m mlx_vlm generate \
-  --model VisualInference/Qwen3.8-27B-AEON-Ultimate-Uncensored-Multimodal-MLX-6bit \
-  --draft-model VisualInference/Qwen3.8-27B-AEON-Ultimate-Uncensored-MLX-MTP-Drafter \
+  --model VisualInference/Qwen3.8-27B-AEON-Ultimate-Multimodal-MLX-6bit \
+  --draft-model VisualInference/Qwen3.8-27B-AEON-Ultimate-MLX-MTP-Drafter \
   --draft-kind mtp --draft-block-size 3 \
   --prompt "..."
 ```
@@ -66,7 +66,7 @@ See `scripts/split.sh`.
 ```bash
 python -m mlx_vlm.speculative.drafters.qwen3_5_mtp.split \
   --model AEON-7/Qwen3.8-27B-AEON-ULTIMATE-UNCENSORED-BF16 \
-  --output Qwen3.8-27B-AEON-Ultimate-Uncensored-MLX-MTP-Drafter
+  --output Qwen3.8-27B-AEON-Ultimate-MLX-MTP-Drafter
 ```
 
 Use the official split tool. Extracting the `mtp.*` tensors by hand produces a broken drafter with 0% acceptance: the tool applies the RMSNorm weight-convention shift and stamps the `format: mlx` metadata that mlx-vlm requires.
